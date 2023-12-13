@@ -1,26 +1,26 @@
 "use client";
 
-import Model from "@/components/Model";
-import {useEffect, useState} from "react";
+import AuthModel from "@/components/AuthModel"
+import UploadModel from "@/components/UploadModel";
+import { useEffect, useState } from "react";
 
-const ModelProvider = ()=>{
+const ModelProvider = () => {
+  const [isMounted, setIsMounted] = useState(false);
 
-    const [isMounted,setIsMounted] = useState(false);
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
-    useEffect(()=>{
-        setIsMounted(true);
-        
-    },[]);
+  if (!isMounted) {
+    return null;
+  }
 
-    if (!isMounted) {
-        return null;
-    }
-
-    return (
-        <>
-            <Model/>
-        </>
-    );
-}
+  return (
+    <>
+      <AuthModel/>
+      <UploadModel />
+    </>
+  );
+};
 
 export default ModelProvider;
