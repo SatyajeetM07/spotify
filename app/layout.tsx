@@ -1,35 +1,47 @@
-import type { Metadata } from "next";
-import { Figtree } from "next/font/google";
-import Sidebar from "@/components/Sidebar";
-import "./globals.css";
-import SupabaseProvider from "@/providers/SupabaseProvider";
-import UserProvider from "@/providers/UserProvider";
-import ModelProvider from "@/providers/ModelProvider";
-import ToasterProvider from "@/providers/ToasterProvider";
+import { Figtree } from 'next/font/google'
 
-const font = Figtree({ subsets: ["latin"] });
+import getSongsByUserId from '@/actions/getSongsByUserId'
+import getActiveProductsWithPrices from '@/actions/getActiveProductsWithPrices'
+import Sidebar from '@/components/Sidebar'
+import ToasterProvider from '@/providers/ToasterProvider'
+import UserProvider from '@/providers/UserProvider'
+import ModelProvider from '@/providers/ModelProvider'
+import SupabaseProvider from '@/providers/SupabaseProvider'
+import Player from '@/components/Player'
 
-export const metadata: Metadata = {
-  title: "Spotify",
-  description: "Listen to music!",
-};
+import './globals.css'
 
-export default function RootLayout({
+const font = Figtree({ subsets: ['latin'] })
+
+export const metadata = {
+  title: 'Spotify Clone',
+  description: 'Spotify Clone',
+}
+
+export const revalidate = 0;
+
+export default async function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
+  const products = await getActiveProductsWithPrices();
+  const userSongs = await getSongsByUserId();
+
   return (
     <html lang="en">
       <body className={font.className}>
-        <ToasterProvider/>
+        <ToasterProvider />
         <SupabaseProvider>
           <UserProvider>
-            <ModelProvider/>
-            <Sidebar>{children}</Sidebar>
+            <ModelProvider products={products} />
+            <Sidebar songs={userSongs}>
+              {children}
+            </Sidebar>
+            <Player />
           </UserProvider>
         </SupabaseProvider>
       </body>
     </html>
-  );
+  )
 }
