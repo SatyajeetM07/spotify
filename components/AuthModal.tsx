@@ -9,14 +9,14 @@ import {
 } from '@supabase/auth-helpers-react';
 import { useRouter } from 'next/navigation';
 
-import useAuthModel from "@/hooks/useAuthModel";
+import useAuthModal from "@/hooks/useAuthModal";
 
-import Model from './Model';
+import Modal from './Modal';
 
-const AuthModel = () => {
+const AuthModal = () => {
   const { session } = useSessionContext();
   const router = useRouter();
-  const { onClose, isOpen } = useAuthModel();
+  const { onClose, isOpen } = useAuthModal();
   
   const supabaseClient = useSupabaseClient();
 
@@ -34,7 +34,7 @@ const AuthModel = () => {
   }
 
   return (
-    <Model 
+    <Modal 
       title="Welcome back" 
       description="Login to your account." 
       isOpen={isOpen} 
@@ -57,8 +57,8 @@ const AuthModel = () => {
         }}
         theme="dark"
       />
-    </Model>
+    </Modal>
   );
 }
 
-export default AuthModel;
+export default AuthModal;

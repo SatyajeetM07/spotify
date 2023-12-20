@@ -3,16 +3,16 @@
 import React, { useState } from 'react';
 import { toast } from 'react-hot-toast';
 
-import useSubscribeModel from '@/hooks/useSubscribeModel';
+import useSubscribeModal from '@/hooks/useSubscribeModal';
 import { useUser } from '@/hooks/useUser';
 import { postData } from '@/libs/helpers';
 import { getStripe } from '@/libs/stripeClient';
 import { Price, ProductWithPrice } from '@/types';
 
-import Model from './Model';
+import Modal from './Modal';
 import Button from './Button';
 
-interface SubscribeModelProps {
+interface SubscribeModalProps {
   products: ProductWithPrice[];
 }
 
@@ -27,17 +27,17 @@ const formatPrice = (price: Price) => {
 };
 
 
-const SubscribeModel: React.FC<SubscribeModelProps> = ({
+const SubscribeModal: React.FC<SubscribeModalProps> = ({
   products
 }) => {
-  const subscribeModel = useSubscribeModel();
+  const subscribeModal = useSubscribeModal();
   const { user, isLoading, subscription } = useUser();
 
   const [priceIdLoading, setPriceIdLoading] = useState<string>();
 
   const onChange = (open: boolean) => {
     if (!open) {
-      subscribeModel.onClose();
+      subscribeModal.onClose();
     }
   }
 
@@ -110,15 +110,15 @@ const SubscribeModel: React.FC<SubscribeModelProps> = ({
   }
 
   return (
-    <Model
+    <Modal
       title="Only for premium users"
       description="Listen to music with Spotify Premium"
-      isOpen={subscribeModel.isOpen}
+      isOpen={subscribeModal.isOpen}
       onChange={onChange}
     >
       {content}
-    </Model>
+    </Modal>
   );
 }
 
-export default SubscribeModel;
+export default SubscribeModal;

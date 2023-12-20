@@ -5,7 +5,7 @@ import getActiveProductsWithPrices from '@/actions/getActiveProductsWithPrices'
 import Sidebar from '@/components/Sidebar'
 import ToasterProvider from '@/providers/ToasterProvider'
 import UserProvider from '@/providers/UserProvider'
-import ModelProvider from '@/providers/ModelProvider'
+import ModalProvider from '@/providers/ModalProvider'
 import SupabaseProvider from '@/providers/SupabaseProvider'
 import Player from '@/components/Player'
 
@@ -34,7 +34,7 @@ export default async function RootLayout({
         <ToasterProvider />
         <SupabaseProvider>
           <UserProvider>
-            <ModelProvider products={products} />
+            <ModalProvider products={products} />
             <Sidebar songs={userSongs}>
               {children}
             </Sidebar>

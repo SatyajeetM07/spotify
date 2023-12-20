@@ -9,7 +9,7 @@ import { toast } from "react-hot-toast";
 import { HiHome } from "react-icons/hi";
 import { BiSearch } from "react-icons/bi";
 
-import useAuthModel from "@/hooks/useAuthModel";
+import useAuthModal from "@/hooks/useAuthModal";
 import { useUser } from "@/hooks/useUser";
 import usePlayer from "@/hooks/usePlayer";
 
@@ -26,7 +26,7 @@ const Header: React.FC<HeaderProps> = ({
 }) => {
   const player = usePlayer();
   const router = useRouter();
-  const authModel = useAuthModel();
+  const authModal = useAuthModal();
 
   const supabaseClient = useSupabaseClient();
   const { user } = useUser();
@@ -138,7 +138,7 @@ const Header: React.FC<HeaderProps> = ({
             <>
               <div>
                 <Button 
-                  onClick={authModel.onOpen} 
+                  onClick={authModal.onOpen} 
                   className="
                     bg-transparent 
                     text-neutral-300 
@@ -150,7 +150,7 @@ const Header: React.FC<HeaderProps> = ({
               </div>
               <div>
                 <Button 
-                  onClick={authModel.onOpen} 
+                  onClick={authModal.onOpen} 
                   className="bg-white px-6 py-2"
                 >
                   Log in

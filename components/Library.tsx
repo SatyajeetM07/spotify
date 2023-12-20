@@ -4,10 +4,10 @@ import { TbPlaylist } from "react-icons/tb";
 import { AiOutlinePlus } from "react-icons/ai";
 
 import { Song } from "@/types";
-import useUploadModel from "@/hooks/useUploadModel";
+import useUploadModal from "@/hooks/useUploadModal";
 import { useUser } from "@/hooks/useUser";
-import useAuthModel from "@/hooks/useAuthModel";
-import useSubscribeModel from "@/hooks/useSubscribeModel";
+import useAuthModal from "@/hooks/useAuthModal";
+import useSubscribeModal from "@/hooks/useSubscribeModal";
 import useOnPlay from "@/hooks/useOnPlay";
 
 import MediaItem from "./MediaItem";
@@ -20,22 +20,22 @@ const Library: React.FC<LibraryProps> = ({
   songs
 }) => {
   const { user, subscription } = useUser();
-  const uploadModel = useUploadModel();
-  const authModel = useAuthModel();
-  const subscribeModel = useSubscribeModel();
+  const uploadModal = useUploadModal();
+  const authModal = useAuthModal();
+  const subscribeModal = useSubscribeModal();
 
   const onPlay = useOnPlay(songs);
 
   const onClick = () => {
     if (!user) {
-      return authModel.onOpen();
+      return authModal.onOpen();
     }
 
     if (!subscription) {
-      return subscribeModel.onOpen();
+      return subscribeModal.onOpen();
     }
 
-    return uploadModel.onOpen();
+    return uploadModal.onOpen();
   }
 
   return ( 

@@ -1,15 +1,15 @@
 import { create } from 'zustand';
 
-interface SubscribeModelStore {
+interface UploadModalStore {
   isOpen: boolean;
   onOpen: () => void;
   onClose: () => void;
 }
 
-const useSubscribeModel = create<SubscribeModelStore>((set) => ({
+const useUploadModal = create<UploadModalStore>((set) => ({
   isOpen: false,
   onOpen: () => set({ isOpen: true }),
   onClose: () => set({ isOpen: false }),
 }));
 
-export default useSubscribeModel;
+export default useUploadModal;
