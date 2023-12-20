@@ -5,12 +5,12 @@ import { useRouter } from "next/navigation";
 
 import { useUser } from "@/hooks/useUser";
 import Button from "@/components/Button";
-import useSubscribeModal from "@/hooks/useSubscribeModel";
+import useSubscribeModel from "@/hooks/useSubscribeModel";
 import { postData } from "@/libs/helpers";
 
 const AccountContent = () => {
   const router = useRouter();
-  const subscribeModal = useSubscribeModal();
+  const subscribeModel = useSubscribeModel();
   const { isLoading, subscription, user } = useUser();
 
   const [loading, setLoading] = useState(false);
@@ -40,7 +40,7 @@ const AccountContent = () => {
         <div className="flex flex-col gap-y-4">
         <p>No active plan.</p>
         <Button 
-          onClick={subscribeModal.onOpen}
+          onClick={subscribeModel.onOpen}
           className="w-[300px]"
         >
           Subscribe

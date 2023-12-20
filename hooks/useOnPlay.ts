@@ -16,9 +16,9 @@ const useOnPlay = (songs: Song[]) => {
       return authModel.onOpen();
     }
 
-    if (!subscription) {
-      return subscribeModel.onOpen();
-    }
+    // if (!subscription) {
+    //   return subscribeModel.onOpen();
+    // }
 
     player.setId(id);
     player.setIds(songs.map((song) => song.id));
