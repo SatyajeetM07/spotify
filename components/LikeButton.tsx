@@ -7,7 +7,7 @@ import { toast } from "react-hot-toast";
 import { useSessionContext } from "@supabase/auth-helpers-react";
 
 import { useUser } from "@/hooks/useUser";
-import useAuthModal from "@/hooks/useAuthModal";
+import useAuthModel from "@/hooks/useAuthModel";
 
 interface LikeButtonProps {
   songId: string;
@@ -20,7 +20,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({
   const {
     supabaseClient
   } = useSessionContext();
-  const authModal = useAuthModal();
+  const authModel = useAuthModel();
   const { user } = useUser();
 
   const [isLiked, setIsLiked] = useState<boolean>(false);
@@ -50,7 +50,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({
 
   const handleLike = async () => {
     if (!user) {
-      return authModal.onOpen();
+      return authModel.onOpen();
     }
 
     if (isLiked) {
